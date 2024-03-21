@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <main class="mx-auto px-5 flex flex-col">
+      <nav class="flex flex-col w-full">
+        <div class="w-full p-4 bg-gradient-to-r sticky top-0">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center flex-row">
+              <%= image_tag 'logo.png', class: 'w-14 rounded-lg'%>
+              <ul class="flex flex-row mx-4 ">
+                <li>
+                  <%= link_to brand_owner_path, class: "block px-4 py-2 hover:bg-zinc-200 rounded-lg" do %>
+                    <%= icon('fa-solid', 'gauge-high') %>
+                    <span class="hidden md:inline-block">Dashboard</span>
+                  <% end %>
+                </li>
+                <!-- Add more navigation items here -->
+              </ul>
+            </div>
+            <h1 class="text-lg p-2 hidden md:block">Brand Owner Dashboard</h1>
+          </div>
+        </div>  
+        <div class="h-px rounded-full bg-zinc-300"></div>
+      </nav>
+      <%= yield %>
+    </main>
+  </body>
+</html>
