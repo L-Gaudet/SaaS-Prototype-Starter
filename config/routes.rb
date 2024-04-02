@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :assets
+  resources :digital_assets
+  resources :find_creators
   devise_for :creators
   devise_for :brand_owners
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
