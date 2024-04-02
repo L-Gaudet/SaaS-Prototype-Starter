@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_31_012438) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_02_191325) do
   create_table "brand_owners", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -54,6 +54,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_012438) do
     t.index ["creator_id"], name: "index_digital_assets_on_creator_id"
   end
 
+  create_table "invitations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+    t.integer "creator_id", null: false
+    t.integer "brand_owner_id", null: false
+    t.index ["brand_owner_id"], name: "index_invitations_on_brand_owner_id"
+    t.index ["creator_id"], name: "index_invitations_on_creator_id"
+  end
+
   add_foreign_key "digital_assets", "brand_owners"
   add_foreign_key "digital_assets", "creators"
+  add_foreign_key "invitations", "brand_owners"
+  add_foreign_key "invitations", "creators"
 end
