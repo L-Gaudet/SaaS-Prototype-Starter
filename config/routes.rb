@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :digital_assets
   resources :find_creators
+  
   devise_for :creators
   devise_for :brand_owners
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -28,4 +29,7 @@ Rails.application.routes.draw do
   get "/brand_owner", to: "brand_owner#index", as: :brand_owner
 
   get "/creator", to: "creator#index", as: :creator
+
+  get "/manage_invites", to: "manage_invites#index", as: :manage_invites
+  post "/manage_invites", to: "manage_invites#update"
 end
