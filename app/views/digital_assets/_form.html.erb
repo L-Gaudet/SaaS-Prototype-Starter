@@ -17,12 +17,7 @@
 
   <div class="my-5">
     <%= form.label :brand_owner_id %>
-    <%= form.number_field :brand_owner_id, class: "text-gray-800 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :creator_id %>
-    <%= form.number_field :creator_id, class: "text-gray-800 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :brand_owner_id, current_creator.brand_owners.collect { |brand_owner| [brand_owner.email] }, class: "text-gray-800 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"%>
   </div>
 
   <div class="inline">
