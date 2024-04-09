@@ -22,6 +22,7 @@ class DigitalAssetsController < ApplicationController
   # POST /digital_assets or /digital_assets.json
   def create
     @digital_asset = digital_asset.new(digital_asset_params)
+    @digital_asset.creator = current_creator
 
     respond_to do |format|
       if @digital_asset.save
