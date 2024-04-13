@@ -22,8 +22,6 @@ class DigitalAssetsController < ApplicationController
 
   # POST /digital_assets or /digital_assets.json
   def create
-    puts "params: #{params}"
-    puts "############### #{params[:digital_asset][:name]}"
     digital_asset = DigitalAsset.new(
                                       creator: current_creator,
                                       brand_owner: BrandOwner.find(params[:digital_asset][:brand_owner_id]),
@@ -31,12 +29,7 @@ class DigitalAssetsController < ApplicationController
                                       url: params[:digital_asset][:url],
                                       views: params[:digital_asset][:views],
                                       )
-    # digital_asset.name = params[:name]
-    # digital_asset.url = params[:url]
-    # digital_asset.views = params[:views]
-    # digital_asset.brand_owner = params[:brand_owner_id]
 
-    puts "!!!!!!!!!!!! digital_asset: #{digital_asset.name} #{digital_asset.url} #{digital_asset.views}"
     if digital_asset.name.nil? || digital_asset.url.nil? || digital_asset.views.nil? 
       redirect_to digital_assets_path, alert: 'Digital asset failed to create.'
     end
