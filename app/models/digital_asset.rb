@@ -1,6 +1,10 @@
 class DigitalAsset < ApplicationRecord
   belongs_to :creator
-  has_one :brand_owner
+  belongs_to :brand_owner
 
-  attr_accessor :views, :url, :name
+  private
+
+  def digital_asset_params
+    params.require(:digital_asset).permit(:name, :url, :views)
+  end
 end

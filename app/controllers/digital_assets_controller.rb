@@ -1,5 +1,6 @@
 class DigitalAssetsController < ApplicationController
-  before_action :set_digital_asset, only: %i[ create show edit update destroy ]
+  before_action :authenticate_creator!, only: %i[ create show edit update destroy ]
+  layout 'creator'
 
   # GET /digital_digital_assets or /digital_assets.json
   def index
@@ -21,18 +22,31 @@ class DigitalAssetsController < ApplicationController
 
   # POST /digital_assets or /digital_assets.json
   def create
-    @digital_asset = digital_asset.new(digital_asset_params)
-    @digital_asset.creator = current_creator
+    puts "params: #{params}"
+    puts "############### #{params[:digital_asset][:name]}"
+    digital_asset = DigitalAsset.new(
+                                      creator: current_creator,
+                                      brand_owner: BrandOwner.find(params[:digital_asset][:brand_owner_id]),
+                                      name: (params[:digital_asset][:name]),
+                                      url: params[:digital_asset][:url],
+                                      views: params[:digital_asset][:views],
+                                      )
+    # digital_asset.name = params[:name]
+    # digital_asset.url = params[:url]
+    # digital_asset.views = params[:views]
+    # digital_asset.brand_owner = params[:brand_owner_id]
 
-    respond_to do |format|
-      if @digital_asset.save
-        format.html { redirect_to digital_assets_path, notice: "digital_asset was successfully created." }
-        format.json { render :show, status: :created, location: @digital_asset }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @digital_asset.errors, status: :unprocessable_entity }
-      end
+    puts "!!!!!!!!!!!! digital_asset: #{digital_asset.name} #{digital_asset.url} #{digital_asset.views}"
+    if digital_asset.name.nil? || digital_asset.url.nil? || digital_asset.views.nil? 
+      redirect_to digital_assets_path, alert: 'Digital asset failed to create.'
     end
+
+    if digital_asset.save!
+      redirect_to digital_assets_path, notice: 'Digital asset was successfully created.'
+    else 
+      redirect_to digital_assets_path, alert: 'Digital asset failed to create.'
+    end
+
   end
 
   # PATCH/PUT /digital_assets/1 or /digital_assets/1.json

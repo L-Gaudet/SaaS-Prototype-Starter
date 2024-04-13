@@ -17,10 +17,12 @@
 
   <div class="my-5">
     <%= form.label :brand_owner_id %>
-    <%= form.select :brand_owner_id, current_creator.brand_owners.collect { |brand_owner| [brand_owner.email] }, class: "text-gray-800 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"%>
+    <%= form.select :brand_owner_id, current_creator.brand_owners.collect { |brand_owner| [brand_owner.email, brand_owner.id] }, {include_blank: true}, {class: "text-gray-800 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"}%>
   </div>
 
+
+
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-primary-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
