@@ -9,6 +9,7 @@ class DigitalAssetsController < ApplicationController
 
   # GET /digital_assets/1 or /digital_assets/1.json
   def show
+    @digital_asset = DigitalAsset.find(params[:id])
   end
 
   # GET /digital_assets/new
@@ -31,13 +32,13 @@ class DigitalAssetsController < ApplicationController
                                       )
 
     if digital_asset.name.nil? || digital_asset.url.nil? || digital_asset.views.nil? 
-      redirect_to digital_assets_path, alert: 'Digital asset failed to create.'
+      redirect_to creator_path, alert: 'Digital asset failed to create.'
     end
 
     if digital_asset.save!
-      redirect_to digital_assets_path, notice: 'Digital asset was successfully created.'
+      redirect_to creator_path, notice: 'Digital asset was successfully created.'
     else 
-      redirect_to digital_assets_path, alert: 'Digital asset failed to create.'
+      redirect_to creator_path, alert: 'Digital asset failed to create.'
     end
 
   end
@@ -57,7 +58,8 @@ class DigitalAssetsController < ApplicationController
 
   # DELETE /digital_assets/1 or /digital_assets/1.json
   def destroy
-    @digital_asset.destroy!
+    current_creator.digital_assets.find(params[:id]).destroy!
+    # @digital_asset.destroy!
 
     respond_to do |format|
       format.html { redirect_to digital_assets_url, notice: "digital asset was successfully destroyed." }

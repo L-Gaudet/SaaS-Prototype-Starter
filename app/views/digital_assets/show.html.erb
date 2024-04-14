@@ -6,10 +6,10 @@
 
     <%= render @digital_asset %>
 
-    <%= link_to "Edit this digital_asset", edit_digital_asset_path(@digital_asset), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this asset", edit_digital_asset_path(@digital_asset), class: "mt-2 rounded-lg py-3 px-5 bg-gray-800 inline-block font-medium" %>
     <div class="inline-block ml-2">
-      <%= button_to "Destroy this digital_asset", digital_asset_path(@digital_asset), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to "Destroy this asset", digital_asset_path(@digital_asset), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-800 font-medium" %>
     </div>
-    <%= link_to "Back to digital_assets", digital_assets_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Back to all assets", digital_assets_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-800 inline-block font-medium" %>
   </div>
 </div>

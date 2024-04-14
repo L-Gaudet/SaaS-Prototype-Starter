@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "/brand_owner", to: "brand_owner#index", as: :brand_owner
 
   get "/creator", to: "creator#index", as: :creator
+  get "/creator/:id", to: "creator#show", as: :show_creator
 
   get "/manage_invites", to: "manage_invites#index", as: :manage_invites
   post "/manage_invites", to: "manage_invites#update"

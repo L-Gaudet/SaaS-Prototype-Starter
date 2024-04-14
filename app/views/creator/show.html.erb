@@ -1,0 +1,26 @@
+<h1 class="text-2xl font-medium">Creator Profile</h1>
+<% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<% end %>
+<% if alert.present? %>
+  <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
+<% end %>
+
+<div class="flex flex-row justify-between">
+  <p class="text-xl">Email: <%= @creator.email %></p>
+  <%= link_to "Back", :back, class: "inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"%>
+</div>
+<div class="w-full p-5">
+  
+  <div class="flex flex-col gap-10 p-10 mx-auto justify-normal items-center">
+    <h1 class="font-bold text-4xl dark:text-white">Total Views: <%= @creator.digital_assets.sum(:views) %></h1>
+  </div>
+
+  <div id="digital_asset" class="min-w-full">
+    <% if @creator.digital_assets.any? %>
+      <%= render @creator.digital_assets %>
+    <% else %>
+      <p class="text-xl">No digital assets found.</p>
+    <% end %>
+  </div>
+</div>
