@@ -20,11 +20,8 @@
                   <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><%=creator.email%></h5>
                   <span class="text-sm text-gray-500 dark:text-gray-400"><%= creator.id %></span>
                   <div class="flex mt-4 md:mt-6">
-                      <%= form_tag do %>
-                        <%= hidden_field_tag :creator_id, creator.id %>
-                        <%= submit_tag "See stats", class: "inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
-                      <% end %>
-                      </div>
+                      <%= link_to "See stats", show_creator_path(creator.id), class: "inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
+                  </div>
               </div>
           </div>
     <% end %>

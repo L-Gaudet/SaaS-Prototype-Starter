@@ -58,7 +58,8 @@ class DigitalAssetsController < ApplicationController
 
   # DELETE /digital_assets/1 or /digital_assets/1.json
   def destroy
-    @digital_asset.destroy!
+    current_creator.digital_assets.find(params[:id]).destroy!
+    # @digital_asset.destroy!
 
     respond_to do |format|
       format.html { redirect_to digital_assets_url, notice: "digital asset was successfully destroyed." }

@@ -18,5 +18,7 @@
     <%= link_to "Show this asset", digital_asset, class: "rounded-lg py-3 px-5 bg-gray-800 inline-block font-medium" %>
     <%= link_to "Edit this asset", edit_digital_asset_path(digital_asset), class: "rounded-lg py-3 ml-2 px-5 bg-gray-800 inline-block font-medium" %>
     <hr class="mt-6">
+  <% else %>
+    <hr class="mt-6">
   <% end %>
 </div>
